@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PROVAKAR MathPro Competitive — বাংলায় প্রতিযোগিতামূলক পরীক্ষার গণিত শেখার সবচেয়ে সম্পূর্ণ ফ্রি প্ল্যাটফর্ম। WBCS, SSC CGL, Railway NTPC, UPSC CSAT।">
+  <title>PROVAKAR MathPro Competitive — বাংলায় গণিত শিখুন</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <div class="app-wrapper">
+
+    <!-- ═══════════ SIDEBAR ═══════════ -->
+    <aside class="sidebar" id="sidebar">
+      
+      <!-- Sidebar Header / Brand -->
+      <div class="sidebar-header">
+        <a href="#" class="sidebar-brand" onclick="loadWelcome(); return false;">
+          <div class="sidebar-brand-icon">M</div>
+          <div>
+            <div class="sidebar-brand-text">PROVAKAR MathPro Competitive</div>
+            <div class="sidebar-brand-sub">বাংলায় গণিত শিখুন 🇮🇳</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Search -->
+      <div class="sidebar-search">
+        <div class="sidebar-search-wrapper">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="অধ্যায় খুঁজুন..." oninput="handleSearch(event)">
+        </div>
+      </div>
+
+      <!-- Navigation (Rendered by JS) -->
+      <nav class="sidebar-nav" id="sidebarNav">
+        <!-- Populated by renderSidebar() -->
+      </nav>
+
+      <!-- Progress Bar -->
+      <div class="sidebar-progress">
+        <div class="sidebar-progress-label">
+          <span>অগ্রগতি</span>
+          <span id="progressLabel">0/50 সম্পন্ন (0%)</span>
+        </div>
+        <div class="sidebar-progress-bar">
+          <div class="sidebar-progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ═══════════ MAIN CONTENT ═══════════ -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="breadcrumb" id="breadcrumb">
+            <span>হোম</span>
+          </div>
+        </div>
+        <div class="header-right">
+          
+          <!-- Shortcut Corner Button -->
+          <button class="header-btn" onclick="loadShortcutCorner()" title="30-সেকেন্ড শর্টকাট কর্নার">
+            <i class="fa-solid fa-bolt"></i>
+            <span class="btn-text">শর্টকাট কর্নার</span>
+          </button>
+
+          <!-- Print Button -->
+          <button class="header-btn" onclick="handlePrint()" title="প্রিন্ট / PDF">
+            <i class="fa-solid fa-print"></i>
+            <span class="btn-text">প্রিন্ট</span>
+          </button>
+
+          <!-- Theme Dropdown -->
+          <div class="theme-dropdown">
+            <button class="header-btn" onclick="toggleThemeMenu()" title="থিম পরিবর্তন">
+              <i class="fa-solid fa-palette"></i>
+              <span class="btn-text">থিম</span>
+            </button>
+            <div class="theme-menu" id="themeMenu">
+              <div class="theme-menu-item" data-theme="light" onclick="selectTheme('light')">
+                <i class="fa-solid fa-sun"></i> Light Mode
+              </div>
+              <div class="theme-menu-item" data-theme="dark" onclick="selectTheme('dark')">
+                <i class="fa-solid fa-moon"></i> Dark Mode
+              </div>
+              <div class="theme-menu-item" data-theme="cyberpunk" onclick="selectTheme('cyberpunk')">
+                <i class="fa-solid fa-robot"></i> Cyberpunk Matrix
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <!-- Content Area (Rendered by JS) -->
+      <div class="content-area" id="contentArea">
+        <!-- Populated by loadWelcome(), loadChapter(), loadShortcutCorner() -->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- ⚡ Floating Action Button Menu (কুইক লিঙ্ক মেনু) -->
+  <div id="quick-links-container" class="quick-links-container">
+    <div id="quick-links-menu" class="quick-links-menu">
+      <a href="https://drive.google.com/drive/folders/1O798TAQdsBHop8iF2_1_OZat1HIgraLN?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <span class="link-icon">📁</span> Personal Notes (Drive)
+      </a>
+      <a href="https://docs.google.com/document/d/1Venz9BpRRIVq0UFUnjzZj0itwWJeJTCw6MmJLrrdqIQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <span class="link-icon">📝</span> Personal Prompts (Docs)
+      </a>
+      <a href="https://github.com/provakar4173student-del/Provakar" target="_blank" rel="noopener noreferrer">
+        <span class="link-icon">🎯</span> Mock Test Website
+      </a>
+      <a href="https://www.instagram.com/provakar.biswas.3914?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
+        <span class="link-icon">📸</span> Instagram Profile
+      </a>
+      <a href="mailto:provakarb541@gmail.com" target="_blank" rel="noopener noreferrer">
+        <span class="link-icon">✉️</span> Contact Developer
+      </a>
+    </div>
+    <button id="fab-main-btn" class="fab-main-btn" onclick="toggleQuickLinks()">
+      <span class="fab-icon">⚡</span>
+    </button>
+  </div>
+
+  <!-- Question Database Files -->
+  <script src="questions-ch1.js"></script>
+  <script src="questions-ch2.js"></script>
+  <script src="questions-ch3.js"></script>
+  <script src="questions-ch4.js"></script>
+  <script src="questions-ch5.js"></script>
+  <script src="questions-ch6.js"></script>
+  <script src="questions-ch7.js"></script>
+  <script src="questions-ch8.js"></script>
+  <script src="questions-ch9.js"></script>
+  <script src="questions-ch10.js"></script>
+  <script src="questions-ch11.js"></script>
+  <script src="questions-ch12.js"></script>
+  <script src="questions-ch13.js"></script>
+  <script src="questions-ch14.js"></script>
+  <script src="questions-ch15.js"></script>
+  <script src="questions-ch16.js"></script>
+  <script src="questions-ch17.js"></script>
+  <script src="questions-ch18.js"></script>
+  <script src="questions-ch19.js"></script>
+  <script src="questions-ch20.js"></script>
+  <script src="questions-ch21.js"></script>
+  <script src="questions-ch22.js"></script>
+  <script src="questions-ch23.js"></script>
+  <script src="questions-ch24.js"></script>
+  <script src="questions-ch25.js"></script>
+  <script src="questions-ch26.js"></script>
+  <script src="questions-ch27.js"></script>
+  <script src="questions-ch28.js"></script>
+  <script src="questions-ch29.js"></script>
+  <script src="questions-ch30.js"></script>
+  <script src="questions-ch31.js"></script>
+  <script src="questions-ch32.js"></script>
+  <script src="questions-ch33.js"></script>
+  <script src="questions-ch34.js"></script>
+  <script src="questions-ch35.js"></script>
+  <script src="questions-ch36.js"></script>
+  <script src="questions-ch37.js"></script>
+  <script src="questions-ch38.js"></script>
+  <script src="questions-ch39.js"></script>
+  <script src="questions-ch40.js"></script>
+  <script src="questions-ch41.js"></script>
+  <script src="questions-ch42.js"></script>
+  <script src="questions-ch43.js"></script>
+  <script src="questions-ch44.js"></script>
+  <script src="questions-ch45.js"></script>
+  <script src="questions-ch46.js"></script>
+  <script src="questions-ch47.js"></script>
+  <script src="questions-ch48.js"></script>
+  <script src="questions-ch49.js"></script>
+  <script src="questions-ch50.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
